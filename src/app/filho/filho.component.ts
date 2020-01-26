@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-filho',
@@ -15,7 +15,6 @@ export class FilhoComponent implements OnInit {
     this.model = 'Angular';
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
