@@ -11,9 +11,8 @@ export class FilhoComponent implements OnInit {
 
   model: string;
 
-  @Input()
-  set valor(valor: string) {
-    this.model = valor;
+  public estudar() {
+    this.model = 'Angular';
   }
 
   ngOnInit() {

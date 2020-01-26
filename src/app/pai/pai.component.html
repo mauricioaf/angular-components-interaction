@@ -1,6 +1,9 @@
 <div style="border: 1px solid black; width: 200px;">
+    
     <p style="font-family: Comic Sans MS">Componente Pai</p>
 
-    <app-filho valor="Angular"></app-filho>
-    
+    <button (click)="filho.estudar()">Estudar</button>
+
+    <app-filho #filho></app-filho>
+
 </div>
