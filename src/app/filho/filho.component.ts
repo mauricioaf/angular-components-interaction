@@ -9,7 +9,13 @@ export class FilhoComponent implements OnInit {
 
   constructor() { }
 
-  @Input() valor: string;
+  model: string;
+
+  @Input()
+  set valor(valor: string) {
+    console.log('Aqui e ' + valor);
+    this.model = valor;
+  }
 
   ngOnInit() {
   }
