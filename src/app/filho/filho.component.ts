@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-filho',
@@ -9,13 +9,10 @@ export class FilhoComponent implements OnInit {
 
   constructor() { }
 
-  model: string;
-
-  public estudar() {
-    this.model = 'Angular';
-  }
+  @Output() pedido = new EventEmitter();
 
   ngOnInit() {
+    this.pedido.emit('R$100,00');
   }
 
 }

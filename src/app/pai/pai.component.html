@@ -1,9 +1,8 @@
 <div style="border: 1px solid black; width: 200px;">
     
     <p style="font-family: Comic Sans MS">Componente Pai</p>
+    Filho pediu para o pai: {{model}}
+    <app-filho (pedido)="receberPedido($event)"></app-filho>
 
-    <button (click)="ordenar()">Estudar</button>
-
-    <app-filho></app-filho>
 
 </div>

@@ -1,5 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { FilhoComponent } from '../filho/filho.component';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-pai',
@@ -8,13 +7,12 @@ import { FilhoComponent } from '../filho/filho.component';
 })
 export class PaiComponent implements AfterViewInit {
 
+  model: string;
+
   constructor() { }
 
-  @ViewChild(FilhoComponent, {static: false})
-  filho: FilhoComponent;
-
-  ordenar() {
-    this.filho.estudar();
+  receberPedido(valor) {
+    this.model = valor;
   }
 
   ngOnInit() {}
