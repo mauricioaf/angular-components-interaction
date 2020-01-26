@@ -13,7 +13,6 @@ export class FilhoComponent implements OnInit {
 
   @Input()
   set valor(valor: string) {
-    console.log('Aqui e ' + valor);
     this.model = valor;
   }
 
