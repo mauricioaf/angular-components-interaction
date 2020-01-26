@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { FilhoComponent } from '../filho/filho.component';
 
 @Component({
   selector: 'app-pai',
   templateUrl: './pai.component.html',
   styleUrls: ['./pai.component.css']
 })
-export class PaiComponent implements OnInit {
+export class PaiComponent implements AfterViewInit {
 
   constructor() { }
 
-  ngOnInit() {
+  @ViewChild(FilhoComponent, {static: false})
+  filho: FilhoComponent;
+
+  ordenar() {
+    this.filho.estudar();
   }
+
+  ngOnInit() {}
+
+  ngAfterViewInit() {}
 
 }
