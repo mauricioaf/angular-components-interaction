@@ -1,18 +1,39 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { TarefaService } from '../tarefa.service';
 
 @Component({
   selector: 'app-filho',
   templateUrl: './filho.component.html',
   styleUrls: ['./filho.component.css']
 })
-export class FilhoComponent implements OnInit {
+export class FilhoComponent implements OnDestroy {
 
-  constructor() { }
+  subscription: Subscription;
+  task = 'Sem tarefas criadas!';
+  created: boolean;
+  confirmed: boolean;
 
-  @Output() pedido = new EventEmitter();
+  constructor(private tarefaService: TarefaService) {
+    this.subscription = tarefaService.pendente$.subscribe(
+      task => {
+        debugger;
+        this.task = task;
+        this.created = true;
+        this.confirmed = false;
+      });
+  }
 
-  ngOnInit() {
-    this.pedido.emit('R$100,00');
+  confirm() {
+    debugger;
+    this.confirmed = true;
+    this.tarefaService.concluir(this.task);
+  }
+
+
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.subscription.unsubscribe();
   }
 
 }
