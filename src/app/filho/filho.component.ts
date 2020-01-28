@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TarefaService } from '../tarefa.service';
 
@@ -10,26 +10,20 @@ import { TarefaService } from '../tarefa.service';
 export class FilhoComponent implements OnDestroy {
 
   subscription: Subscription;
-  task = 'Sem tarefas criadas!';
-  created: boolean;
-  confirmed: boolean;
+  pendencias = [];
+
 
   constructor(private tarefaService: TarefaService) {
     this.subscription = tarefaService.pendente$.subscribe(
-      task => {
-        debugger;
-        this.task = task;
-        this.created = true;
-        this.confirmed = false;
+      tarefa => {
+        this.pendencias.push(tarefa);
       });
   }
 
-  confirm() {
-    debugger;
-    this.confirmed = true;
-    this.tarefaService.concluir(this.task);
+  concluirTarefa() {
+    const tarefa = this.pendencias.shift();
+    this.tarefaService.concluir(tarefa);
   }
-
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed

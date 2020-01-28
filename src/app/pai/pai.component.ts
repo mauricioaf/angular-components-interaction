@@ -9,20 +9,20 @@ import { TarefaService } from '../tarefa.service';
 })
 export class PaiComponent {
 
-  model: string;
-  taskList: string[] = [];
+  tarefaList = ['Limpar o quarto', 'Estudar Angular', 'Hora de brincar'];
+  pendencias = [];
 
   constructor(private tarefaService: TarefaService) {
-    tarefaService.concluido$.subscribe(task => {
-      debugger;
-      this.taskList.push(`${task} concluído!`);
+    tarefaService.concluido$.subscribe(tarefa => {
+      this.pendencias = this.pendencias.filter(t => t !== tarefa);
+      this.tarefaList.push(tarefa);
     });
   }
 
-  create() {
-    debugger;
-    this.tarefaService.criar('Limpar o quarto!');
-    this.taskList.push(`Tarefa criada!`);
+  criarTarefa() {
+    const tarefa = this.tarefaList.shift();
+    this.pendencias.push(tarefa);
+    this.tarefaService.criar(tarefa);
   }
 
 }
