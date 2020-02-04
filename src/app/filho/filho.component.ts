@@ -1,17 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-filho',
   templateUrl: './filho.component.html',
   styleUrls: ['./filho.component.css']
 })
-export class FilhoComponent implements OnInit {
+export class FilhoComponent implements OnChanges {
 
   constructor() { }
 
-  @Input() valor: string;
+  @Input() valor: number;
+  changeLog: string[] = [];
 
-  ngOnInit() {
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+    let log: string[] = [];
+    for (let propName in changes) {
+      let changedProp = changes[propName];
+      let to = JSON.stringify(changedProp.currentValue);
+      if (changedProp.isFirstChange()) {
+        log.push(`${propName} inicial [${to}]`);
+      } else {
+        let from = JSON.stringify(changedProp.previousValue);
+        log.push(`${propName} alterado de [${from}] para [${to}]`);
+      }
+    }
+    this.changeLog.push(log.join(', '));
   }
 
 }

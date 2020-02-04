@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaiComponent implements OnInit {
 
+  valor = 1;
+
   constructor() { }
 
-  ngOnInit() {
+  aumentarMesada() {
+    this.valor++;
   }
+
+  ngOnInit() {}
 
 }

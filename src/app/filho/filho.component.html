@@ -2,7 +2,14 @@
     <p style="font-family: Comic Sans MS">Componente Filho</p>
 
     <div>
-        Papai mandou eu estudar: {{valor}}
+        Alterar valor mesada: R${{valor}}
     </div>
-    
+
+    <div>
+        <h4>Change Log:</h4>
+        <ul>
+            <li *ngFor="let change of changeLog">{{change}}</li>
+        </ul>
+    </div>
+
 </div>
